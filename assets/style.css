@@ -1,0 +1,17 @@
+.icd-label{
+    padding: 10px;
+    float:left;
+    margin: 2px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    /*margin: 3px;*/
+}
+
+.icd-search-container{
+    border:1px solid grey;
+    padding: 10px;
+}
+
+.icd-table-header{
+    font-weight: bold;
+}

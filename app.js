@@ -4,13 +4,15 @@ var ROOT="";
 define(
     [
         "angular",
+        "directives",
+        "services",
         "controllers"
     ],
 
-    function BaseManager(angular){
+    function BaseManager(angular,Directives, Services){
         var initialize = function () {
 
-            var app = angular.module("myApp", ['ngRoute'],
+            var app = angular.module("myApp", ['ngRoute','ngResource'],
                 function($routeProvider,$locationProvider) {
 
                     $routeProvider.when('/', {
@@ -27,8 +29,8 @@ define(
 
 //            Filters.initialize(app);
 
-//            app.factory(Services);
-//            app.directive(Directives);
+            app.factory(Services);
+            app.directive(Directives);
 
             angular.bootstrap(document,["myApp"]);
 

@@ -3,30 +3,98 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>ICD Finder</title>
+
+    <link href="assets/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="assets/style.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 
-<h1>ICD Code Lookup</h1>
-
-<div class="row col-md-12">
-    <input class="form-control" ng-model="search" placeholder="search...">
-</div>
+<div class="container">
 
 
-<div ng-repeat="c in codeList | filter:search">
+    <div class="row">
+        <h1>ICD Code Lookup</h1>
+    </div>
 
-    <div>
-        {{c.code}},
-        {{c.description}},
-        {{c.block}},
-        {{c.chapter}}
+    <div class="row">
+
+        <div class="col-md-12 icd-search-container">
+
+            <div ng-repeat="c in keywordList track by $index">
+
+                    <span>
+                        <div class="icd-label btn-primary ">
+                            <span>
+                                {{c}}
+                            </span>
+                            <span ng-click="removeTerm($index)">
+                                X
+                            </span>
+                        </div>
+                    </span>
+
+            </div>
+
+            <span>
+                <input type="text" class="icd-label" ng-model="newTerm" ng-enter="addTerm()" />
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="page-header icd-table-header">Code</div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="page-header icd-table-header">Description</div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="page-header icd-table-header">Block</div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="page-header icd-table-header">Chapter</div>
+        </div>
+    </div>
+
+
+    <div ng-repeat="c in resultList track by $index" ng-cloak>
+
+
+        <div class="row">
+            <div class="col-md-3">
+                {{c.code}}
+            </div>
+
+            <div class="col-md-3">
+                {{c.description}}
+            </div>
+
+            <div class="col-md-3">
+                {{c.block}}
+            </div>
+
+            <div class="col-md-3">
+                {{c.chapter}}
+            </div>
+        </div>
+
+
+
     </div>
 
 </div>
 
 <script src="lib/angular.js"></script>
+<script src="lib/angular-resource.min.js"></script>
 <script src="lib/angular-route.js"></script>
-<script src="icdCodes.js"></script>
+<script src="icdCodesSmall.js"></script>
 <script data-main="main.js" src="lib/require.js"></script>
 
 
