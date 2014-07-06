@@ -10,11 +10,16 @@
 </head>
 <body>
 
+
+
 <div class="container">
 
 
     <div class="row">
         <h1>ICD Code Lookup</h1>
+    </div>
+    <div class="row">
+        <h4>ICD v10</h4>
     </div>
 
     <div class="row">
@@ -37,7 +42,7 @@
             </div>
 
             <span>
-                <input type="text" class="icd-label" ng-model="newTerm" ng-enter="addTerm()" />
+                <input type="text" class="icd-label" ng-change="filterList()" ng-model="newTerm" ng-enter="addTerm()" placeholder="Search..."/>
             </span>
 
         </div>
@@ -46,15 +51,15 @@
 
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-1">
             <div class="page-header icd-table-header">Code</div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="page-header icd-table-header">Description</div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="page-header icd-table-header">Block</div>
         </div>
 
@@ -68,15 +73,15 @@
 
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-1">
                 {{c.code}}
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{c.description}}
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{c.block}}
             </div>
 

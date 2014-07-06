@@ -6,7 +6,7 @@ function AppController ($scope,httpPostService){
 
     $scope.codeList=codes;
 
-    $scope.keywordList=["ulcer"];
+    $scope.keywordList=[];
 
     $scope.resultList=[];
 
@@ -39,6 +39,16 @@ function AppController ($scope,httpPostService){
                 }
             )
         }
+
+        $scope.searchKeyList.push(
+            {
+                "query_string":{
+                    "default_field":"_all",
+                    "query":$scope.newTerm+"*"
+                }
+            }
+        )
+
     };
 
     $scope.addTerm = function(){
@@ -46,22 +56,20 @@ function AppController ($scope,httpPostService){
         $scope.resultList=[];
 
         $scope.filterList();
-        //$scope.newTerm="";
+        $scope.newTerm="";
     };
 
     $scope.removeTerm = function(index){
         $scope.keywordList.splice(index, 1);
         $scope.resultList=[];
         $scope.filterList();
+        $scope.newTerm="";
     };
 
 
     $scope.filterList = function(){
 
-//        for(var o1 in $scope.keywordList){
-//
-//            var keyword = $scope.keywordList[o1].toLowerCase();
-//        }
+        $scope.resultList=[];
 
         $scope.generateKeywordsSearchQuery();
 
@@ -70,16 +78,7 @@ function AppController ($scope,httpPostService){
                 "bool":{
                     "must":
                         $scope.searchKeyList,
-//                        $scope.generateKeywordsSearch()
-//
-//                        [
-//                            {
-//                                "query_string":{
-//                                    "default_field":"_all",
-//                                    "query":"Q833"
-//                                }
-//                            }
-//                        ],
+
                     "must_not":[],
                     "should":[]
                 }
@@ -91,6 +90,7 @@ function AppController ($scope,httpPostService){
             {}
         };
 
+        console.log(query);
 
         httpPostService("http://ec2-54-85-4-114.compute-1.amazonaws.com:9200/icd/_search",query).
             success(function(data, status, headers, config) {
