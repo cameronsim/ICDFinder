@@ -2,21 +2,55 @@
 <html ng-controller="AppController">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>ICD Finder</title>
+    <title>DirectICD</title>
 
     <link href="assets/bootstrap.css" rel="stylesheet" media="screen">
     <link href="assets/style.css" rel="stylesheet" media="screen">
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="ICD, Medical Code, ICD Code">
+    <meta name="description" content="DirectICD provides a quick easy way to search for the ICD medical code by patient symptom">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta property="og:title" content="DirectICD - ICD Code Search Engine">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.directicd.com"><meta property="og:locale" content="en_us">
+    <meta property="og:site_name" content="DirectICD">
+
 </head>
-<body>
 
 
+
+<body ng-cloak>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-53004864-1', 'directicd.com');
+    ga('send', 'pageview');
+
+</script>
 
 <div class="container">
 
 
     <div class="row">
-        <h1>ICD Code Lookup</h1>
+        <div class="pull-left">
+            <h1>DirectICD</h1>
+        </div>
+        <div class="pull-right top-margin30px">
+            <div class="row">
+                <h4>Medical / Insurance Code Search Magic</h4>
+            </div>
+            <div class="row pull-right">
+                A <a href="https://www.crewspark.com">Crewspark Inc</a> Mashup | <a href="mailto:info@crewspark.com">Know More</a>
+            </div>
+        </div>
+
     </div>
     <div class="row">
         <h4>ICD v10</h4>
@@ -28,9 +62,9 @@
 
             <div ng-repeat="c in keywordList track by $index">
 
-                    <span>
-                        <div class="icd-label btn-primary ">
-                            <span>
+                    <span ng-cloak>
+                        <div class="icd-label btn-primary " ng-cloak>
+                            <span ng-cloak>
                                 {{c}}
                             </span>
                             <span ng-click="removeTerm($index)">
@@ -49,7 +83,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" ng-show="resultList.length>0">
 
         <div class="col-md-1">
             <div class="page-header icd-table-header">Code</div>
@@ -99,7 +133,6 @@
 <script src="lib/angular.js"></script>
 <script src="lib/angular-resource.min.js"></script>
 <script src="lib/angular-route.js"></script>
-<script src="icdCodesSmall.js"></script>
 <script data-main="main.js" src="lib/require.js"></script>
 
 

@@ -4,7 +4,6 @@ function AppController ($scope,httpPostService){
 
     $scope.title="Bootstrapped!";
 
-    $scope.codeList=codes;
 
     $scope.keywordList=[];
 
